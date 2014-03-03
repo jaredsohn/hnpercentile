@@ -1,9 +1,8 @@
 class AlgoliaChanges < ActiveRecord::Migration
-  def change
-    create_table :members do |t|
-      t.integer :comment_karma
-      t.integer :story_karma
-      t.integer :poll_karma
-    end
+  def up
+  	add_column :comment_karma, :story_karma, :poll_karma, :integer
+  end
+  def down
+
   end
 end
