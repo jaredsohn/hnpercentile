@@ -1,4 +1,4 @@
-class CreateMembers < ActiveRecord::Migration
+class AlgoliaChanges < ActiveRecord::Migration
   def change
     create_table :members do |t|
       t.integer :comment_karma
