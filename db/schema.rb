@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20130203035829) do
   create_table "members", :force => true do |t|
     t.string   "username"
     t.integer  "karma"
-    t.integer  "comments_karma"
+    t.integer  "comment_karma"
     t.integer  "story_karma"
     t.integer  "poll_karma"
     t.datetime "created_at",      :null => false
