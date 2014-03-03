@@ -69,6 +69,18 @@ class Member < ActiveRecord::Base
       else
         self.karma_per_day = self.karma
       end
+
+      begin
+        url = "http://karma.hn/" + username   #TODO: this url doesn't exist yet
+        doc = open(url).read
+        j = JSON.parse(doc)
+        self.comment_karma = j['comment_karma']
+        self.story_karma = j['story_karma']
+        self.poll_karma = j['poll_karma']
+      rescue Exception
+
+      end
+
       save
       touch
       1
