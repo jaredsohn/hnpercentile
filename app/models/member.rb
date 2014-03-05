@@ -11,7 +11,7 @@ class Member < ActiveRecord::Base
     Member.where(:date_registered => start_date..end_date).order("karma DESC")
   end
 
-  def self.get_member
+  def self.get_member(username)
     return self.where(:username => username).first
   end
   
