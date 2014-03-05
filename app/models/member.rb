@@ -67,7 +67,7 @@ class Member < ActiveRecord::Base
     
   def update_karma(force=false)
     if updated_at < DateTime.now - 6.hours or force
-      url = "http://hnsearch.algolia.com/api/v1/users/" + username
+      url = "http://hnsearch.algolia.com/api/v1/users/" + username 
       doc = open(url).read
       j = JSON.parse(doc)
       self.karma = j['karma']
