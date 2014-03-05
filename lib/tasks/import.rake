@@ -10,6 +10,7 @@ task :import => :environment do
 			Member.make_from_api(col[0])
 			count++
 			sleep 1.0
+		end
   	end
   	puts "Imported " + count.to_s() + " new usernames"
 end
