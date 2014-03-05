@@ -1,6 +1,6 @@
-task :import => :environment do
-	require 'csv'    
+require 'csv'
 
+task :import => :environment do
 	csv_text = File.read("db/unique_names.txt")
 	csv = CSV.parse(csv_text, :headers => true)
 	count = 0
