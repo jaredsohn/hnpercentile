@@ -65,7 +65,8 @@ class Member < ActiveRecord::Base
         :date_registered => date_registered
       )
     rescue StandardError => e
-      puts "error for username " + username + ": " + e
+      puts "error for username " + username + ": "
+      puts e
     end
   end
     
