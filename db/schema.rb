@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(:version => 20130203035829) do
     t.integer  "karma"
     t.integer  "comment_karma"
     t.integer  "story_karma"
-    t.integer  "poll_karma"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.date     "date_registered"

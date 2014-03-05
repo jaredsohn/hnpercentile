@@ -80,7 +80,6 @@ class Member < ActiveRecord::Base
         j = JSON.parse(doc)
         self.comment_karma = j['comment_karma']
         self.story_karma = j['story_karma']
-        self.poll_karma = j['poll_karma']
       rescue Exception
 
       end
