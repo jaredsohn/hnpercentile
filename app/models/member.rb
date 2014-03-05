@@ -42,7 +42,8 @@ class Member < ActiveRecord::Base
       date_registered = DateTime.strptime(j['created_at_i'].to_s, "%s")
     else 
       date_registered = DateTime.now #TODO: only because data isn't all loaded yet
-
+    end
+    
     karma = j['karma']
     date_range = (Date.today - date_registered).to_f
     
