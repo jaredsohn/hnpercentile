@@ -37,8 +37,7 @@ class Member < ActiveRecord::Base
     doc = open(url).read
     j = JSON.parse(doc)
     
-    #puts j['created_at']
-    date_registered =  DateTime.new(2013,1)     #TODO: parse this correctly  ex: 2009-08-20T07:59:16.000Z
+    date_registered =  Time.at(j['created_at_i'])
 
     karma = j['karma']
     date_range = (Date.today - date_registered).to_f
