@@ -10,6 +10,9 @@ class Member < ActiveRecord::Base
     end_date = start_date.end_of_month
     Member.where(:date_registered => start_date..end_date).order("karma DESC")
   end
+
+  def self.get_member
+    return self.where(:username => username).first
   
   def self.crawl_and_make_users
     url = "http://hnsearch.algolia.com/api/v1/search_by_date?hitsPerPage=100"
@@ -19,7 +22,7 @@ class Member < ActiveRecord::Base
     updated_karma = 0
     j['hits'].each do |item|
       username = item['author']
-      member = self.where(:username => username).first
+      member = get_member(username)
       if not member
         sleep 1.0 # to be nice to the API provider
         self.make_from_api(username)
