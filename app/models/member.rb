@@ -37,7 +37,11 @@ class Member < ActiveRecord::Base
     doc = open(url).read
     j = JSON.parse(doc)
     
-    date_registered = DateTime.strptime(j['created_at_i'].to_s, "%s")
+    #p j['created_at_i']
+    if (j.key?('created_at_i'))
+      date_registered = DateTime.strptime(j['created_at_i'].to_s, "%s")
+    else 
+      date_registered = DateTime.now #TODO: only because data isn't all loaded yet
 
     karma = j['karma']
     date_range = (Date.today - date_registered).to_f
