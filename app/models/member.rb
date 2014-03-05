@@ -37,32 +37,36 @@ class Member < ActiveRecord::Base
   end
 
   def self.make_from_api(username)
-    url = "http://hnsearch.algolia.com/api/v1/users/" + username
-    doc = open(url).read
-    j = JSON.parse(doc)
-    
-    #p j['created_at_i']
-    if (j.key?('created_at_i'))
-      date_registered = DateTime.strptime(j['created_at_i'].to_s, "%s")
-    else 
-      date_registered = DateTime.now #TODO: only because data isn't all loaded yet
+    begin
+      url = "http://hnsearch.algolia.com/api/v1/users/" + username
+      doc = open(url).read
+      j = JSON.parse(doc)
+      
+      #p j['created_at_i']
+      if (j.key?('created_at_i'))
+        date_registered = DateTime.strptime(j['created_at_i'].to_s, "%s")
+      else 
+        date_registered = DateTime.now #TODO: only because data isn't all loaded yet
+      end
+      
+      karma = j['karma']
+      date_range = (Date.today - date_registered).to_f
+      
+      if date_range > 1
+        kpd = karma / date_range
+      else
+        kpd = karma
+      end
+      
+      self.create(
+        :username => username,
+        :karma => karma,
+        :karma_per_day => kpd,
+        :date_registered => date_registered
+      )
+    rescue Exception, e
+      puts "error for username " + username + ": " + e
     end
-    
-    karma = j['karma']
-    date_range = (Date.today - date_registered).to_f
-    
-    if date_range > 1
-      kpd = karma / date_range
-    else
-      kpd = karma
-    end
-    
-    self.create(
-      :username => username,
-      :karma => karma,
-      :karma_per_day => kpd,
-      :date_registered => date_registered
-    )
   end
     
   def update_karma(force=false)
