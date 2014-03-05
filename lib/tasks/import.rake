@@ -8,7 +8,7 @@ task :import => :environment do
 		member = Member.get_member(col[0])
 		if not member
 			Member.make_from_api(col[0])
-			count++
+			count += 1
 			sleep 1.0
 		end
   	end
