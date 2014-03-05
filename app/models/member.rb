@@ -13,6 +13,7 @@ class Member < ActiveRecord::Base
 
   def self.get_member
     return self.where(:username => username).first
+  end
   
   def self.crawl_and_make_users
     url = "http://hnsearch.algolia.com/api/v1/search_by_date?hitsPerPage=100"
