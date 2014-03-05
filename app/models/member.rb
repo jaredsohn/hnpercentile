@@ -64,7 +64,7 @@ class Member < ActiveRecord::Base
         :karma_per_day => kpd,
         :date_registered => date_registered
       )
-    rescue Exception, e
+    rescue StandardError => e
       puts "error for username " + username + ": " + e
     end
   end
