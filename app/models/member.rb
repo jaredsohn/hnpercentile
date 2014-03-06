@@ -44,9 +44,9 @@ class Member < ActiveRecord::Base
       
       #p j['created_at_i']
       if (j.key?('created_at_i'))
-        puts 'no created at i: ' + username
         date_registered = DateTime.strptime(j['created_at_i'].to_s, "%s")
       else 
+        puts 'no created at i: ' + username
         date_registered = DateTime.now #TODO: only because data isn't all loaded yet
       end
       
