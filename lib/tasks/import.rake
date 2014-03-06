@@ -7,6 +7,7 @@ task :import => :environment do
 	csv.each do |col|
 		member = Member.get_member(col[0])
 		if not member
+			puts "not found: " + col[0]
 			Member.make_from_api(col[0])
 			count += 1
 			sleep 1.0
