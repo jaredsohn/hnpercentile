@@ -24,12 +24,12 @@ class Member < ActiveRecord::Base
     j['hits'].each do |item|
       username = item['author']
       member = get_member(username)
+      sleep 4.0 # to be nice to the API provider
       if not member
-        sleep 1.0 # to be nice to the API provider
         self.make_from_api(username)
         new_members += 1
+        sleep 4.0 # to be nice to the API provider        
       else
-        sleep 0.5
         updated_karma += member.update_karma
       end
     end
@@ -46,8 +46,9 @@ class Member < ActiveRecord::Base
       if (j.key?('created_at_i'))
         date_registered = DateTime.strptime(j['created_at_i'].to_s, "%s")
       else 
-        puts 'no created at i: ' + username
-        date_registered = DateTime.now #TODO: only because data isn't all loaded yet
+        puts 'no created_at_i: ' + username
+        return
+        #date_registered = DateTime.now #TODO: only because data isn't all loaded yet
       end
       
       karma = j['karma']
