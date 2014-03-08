@@ -5,9 +5,10 @@ task :import => :environment do
 	csv = CSV.parse(csv_text, :headers => true)
 	count = 0
 	csv.each do |col|
+		puts count.to_s() + ":" + col[0]
 		member = Member.get_member(col[0])
 		if not member
-			puts "not found: " + col[0]
+			puts "***not found: " + col[0]
 			Member.make_from_api(col[0])
 			count += 1
 			sleep 4.0
