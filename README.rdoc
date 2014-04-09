@@ -1,3 +1,8 @@
+This fork makes use of Algolia's new hnsearch API and also shows all users who every commented/posted (instead of just those since January 2013).  You can check it out at
+
+http://hnpercentile-jared.herokuapp.com/
+
+
 == Hacker News Karma Tracker
 
 A process crawls all items posted on Hacker News (link submissions, comments, etc) every 10 minutes, collects usernames and karma values and stores them into a database that this site uses. Users who have not made a submission or comment on the site after January 25th 2013 may not be included in this site's database. All data comes from the HNSearch API. See code on Github. Contact: nbvfour at gmail.com.
